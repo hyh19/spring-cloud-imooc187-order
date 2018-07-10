@@ -14,9 +14,11 @@ spring:
           content-type: application/json
   zipkin:
     base-url: http://zipkin:9411/
+    sender:
+      type: web
   sleuth:
     sampler:
-      percentage: 1
+      probability: 1
 eureka:
   client:
     service-url:
@@ -24,21 +26,6 @@ eureka:
   instance:
     prefer-ip-address: true
 
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 3000
-    getProductInfoList:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 3000
-feign:
-  hystrix:
-    enabled: true
 logging:
   level:
-    org.springframework.cloud.netflix.feign: debug
+    org.springframework.cloud.openfeign: debug
